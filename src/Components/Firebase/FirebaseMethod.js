@@ -118,10 +118,35 @@ const sendData = (obj, nodeName, uid) =>{
   }
 }
 
-const removeData = (nodeName, uid)=>{
-  const reference = ref(database, `${nodeName}`)
-    remove(reference)
-}
+// const removeData = (nodeName, uid)=>{
+//   const reference = ref(database, `${nodeName}`)
+//     remove(reference)
+// }
+
+const removeData = (nodeName, uid) => {
+  console.log(uid, "uuuuiiiid");
+  return new Promise((resolve, reject) => {
+    if (uid) {
+      const reference = ref(database, `${nodeName}/${uid}`);
+      remove(reference)
+        .then((succ) => {
+          resolve(succ);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } else {
+      const reference = ref(database, `${nodeName}`);
+      remove(reference)
+        .then((succ) => {
+          resolve(succ);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }
+  });
+};
 
 const resetPassword = () =>{
   

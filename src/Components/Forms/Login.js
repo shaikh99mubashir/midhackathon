@@ -65,7 +65,7 @@ function Login() {
               width: 500,
               boxShadow: { md: "none", sm: "3", xs: "3" },
               padding: 3,
-              backgroundColor:'rgba(200,200,200,0.2)'
+              backgroundColor:'rgba(200,200,200,0.4)'
             }}
           >
             <Box sx={{ marginTop: 5 }}>

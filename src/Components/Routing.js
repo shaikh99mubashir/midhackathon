@@ -10,12 +10,14 @@ import User from './User/User'
 import NotFound from './Forms/NotFound'
 import MainPage from './MainPage/MainPage'
 import ForgetPassword from './Forms/ForgetPassword'
+import WebMainPage from './MainPage/WebMainPage'
 
 const Routing = () => {
   return (
     <Box>
     <BrowserRouter>
         <Routes>
+            <Route path='webmainpage' element={<WebMainPage/>}/>
             <Route path='/' element={<Login/>}/>
             <Route path='signup' element={<Signup/>}/>
             <Route path='registration' element={<Registration/>}/>

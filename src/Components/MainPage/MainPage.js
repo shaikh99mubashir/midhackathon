@@ -7,6 +7,8 @@ import { verifyUser } from '../Firebase/FirebaseMethod'
 import { useDispatch } from 'react-redux'
 import { add } from '../Redux/LoginSlice'
 import { Check } from './Check'
+import BookNow from './BookNow'
+import UserProfile from './UserProfile'
 const MainPage = () => {
   const [uid, setUid] = useState('')
   console.log(uid)
@@ -36,6 +38,8 @@ useEffect (()=>{
       <Route path='aboutus' element={<Aboutus/>}/>
       <Route path='contactus' element={<Contactus/>}/>
       <Route path='check' element={<Check/>}/>
+      <Route path='booknow' element={<BookNow/>}/>
+      <Route path='userprofile' element={<UserProfile/>}/>
     </Routes>
     </div>
   )

@@ -8,15 +8,16 @@ import Admin1 from "./Admin1";
 import Admin2 from "./Admin2";
 import Admin3 from "./Admin3";
 import Admin4 from "./Admin4";
+import TransportData from './TransportData'
 
 const Admin = () => {
   const adminRouting = [
     {
-      name: "admin1",
+      name: "Add Transport",
       link: "/admin",
     },
     {
-      name: "admin2",
+      name: "User Booking Data",
       link: "admin2",
     },
     {
@@ -26,6 +27,10 @@ const Admin = () => {
     {
       name: "admin4",
       link: "admin4",
+    },
+    {
+      name: "Transport Data",
+      link: "transportData",
     },
   ];
 
@@ -58,6 +63,7 @@ const Admin = () => {
         <Route path="admin2" element={<Admin2 />} />
         <Route path="admin3" element={<Admin3 />} />
         <Route path="admin4" element={<Admin4 />} />
+        <Route path="transportdata" element={<TransportData/>} />
       </Routes>
     </div>
   );

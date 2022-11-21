@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Appbar from "../Appbar";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,8 @@ import loader1 from "../../Images/loader1.gif";
 import ScreenLoader from '../ScreenLoader'
 import { getData } from "../Firebase/FirebaseMethod";
 import { add } from "../Redux/LoginSlice";
+import MediaCard from "../MediaCard";
+// import {DetailedCard} from '../DetailedCard'
 
 const Home = (props) => {
   const {uid} = props
@@ -26,7 +28,6 @@ const Home = (props) => {
     },
   ];
 
-  console.log(data);
   const dispatch = useDispatch();
   const gettingDataFb = () => {
     uid &&
@@ -43,7 +44,36 @@ const Home = (props) => {
   useEffect(() => {
     gettingDataFb();
   }, [uid]);
-  
+
+
+  const [transportData , setTransportData] = useState([])
+  useEffect(()=>{
+  GetDatafromDB ()
+      
+  },[])
+ 
+  function GetDatafromDB (){
+      getData('addTransport')
+      .then((success)=>{
+          console.log('success', success)
+          const myData =[]
+          Object.entries(success).map(([key, values])=>{
+              myData.push({
+                  ...values,
+                  id: key
+              })
+              setTransportData(myData)
+          })
+      })
+      .catch((error)=>{
+          console.log('error', error)
+      })
+  }
+
+  const mediaCard = (event) =>{
+    console.log('evevnt', event)
+  }
+
   return (
     <>
 
@@ -64,35 +94,27 @@ const Home = (props) => {
           sx={{
             color: "black",
             fontWeight: 400,
-            fontSize: { md: "10rem", sm: "5rem", xs: "1rem" },
+            fontSize: { md: "2rem", sm: ".5rem", xs: ".5rem" },
           }}
         >
-          {data.firstName}
+          Welcome {data.firstName}
         </Typography>
         <Typography
           sx={{
             color: "black",
             fontWeight: 400,
-            fontSize: { md: "7rem", sm: "5rem", xs: "1rem" },
+            fontSize: { md: "1rem", sm: ".5rem", xs: ".1rem" },
           }}
         >
-          Tag Line
+          Check Your Ride
         </Typography>
-        <Button
-          sx={{
-            border: "1px solid white",
-            padding: { md: 1, sm: "none", xs: "none" },
-            fontSize: { md: "1rem", sm: ".5rem", xs: "0.5rem" },
-            color: "white",
-            hover: {
-              "&:hover": {
-                color: "purple",
-              },
-            },
-          }}
-        >
-          Register
-        </Button>
+        <Box className='d-flex' sx={{gap:3}}>
+        {transportData && transportData.map((item, i)=>
+          <Grid item md={3} sm={6} xs={12} >
+          <MediaCard data={item} key={i} uid={uid}  onClick={(e)=>mediaCard(e)}/>
+          </Grid>
+        )}  
+        </Box>
       </Box>
     </Box>
       )}
